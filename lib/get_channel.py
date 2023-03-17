@@ -8,15 +8,20 @@ youtube = build('youtube', 'v3', developerKey = key)
 
 channel_id = "CHANNEL_ID_HERE"
 
-responseChannel = youtube.channels().list(
-  part="snippet,contentDetails,statistics",
-  id=channel_id
-).execute()
+def get_channel():
+    responseChannel = youtube.channels().list(
+    part="snippet,contentDetails,statistics",
+    id=channel_id
+    ).execute()
 
-responseVideos = youtube.search().list(
-  part="snippet",
-  channelId=channel_id,
-  type="video",
-  order="date",
-  maxResults=10
-).execute()
+    responseVideos = youtube.search().list(
+    part="snippet",
+    channelId=channel_id,
+    type="video",
+    order="date",
+    maxResults=10
+    ).execute()
+    
+    return responseChannel, responseVideos
+    
+    
