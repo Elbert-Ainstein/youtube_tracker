@@ -1,12 +1,14 @@
 from googleapiclient.discovery import build
-from dotenv import dotenv_values
+from dotenv import load_dotenv
+import os
 
-config = dotenv_values("../.env")
+load_dotenv()
 
-key = config["KEY"]
+key = os.getenv("KEY")
+
 youtube = build('youtube', 'v3', developerKey = key)
 
-channel_id = "CHANNEL_ID_HERE"
+channel_id = "UC5uNya42ayhsRnZOR3mO6NA"
 
 def get_channel():
     responseChannel = youtube.channels().list(
@@ -23,5 +25,4 @@ def get_channel():
     ).execute()
     
     return responseChannel, responseVideos
-    
-    
+
